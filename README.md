@@ -1,2 +1,2 @@
-# Major-Courses
-전공과목 정리
+## Major-Courses
+# Lastest : 2023.05.08
