@@ -5,7 +5,7 @@
     - MountVolume : 특정 위치에 Storage를 연결시키는 것
     - 목적 : Container에서 MountVolume하는 방법
 - 쿠버네티스를 이용하여 사용하던 리소스를 유지시키려면 어떻게 해야할까?
-    - [Persistent Volume](\Cloud\Volume\Persistent-Volume.md)을 사용한다.   
+    - [Persistent Volume](Cloud/Volume/Persistent-Volume.md)을 사용한다.   
     ![image](https://user-images.githubusercontent.com/110087545/236846614-6b57fb68-d8b6-4d9d-9242-db02d951f4f3.png)
     - Persistent Volume : Storage의 스펙 등을 설정해놓는 수단이다.
     - Persistent Volume Claim : Persistent Volume을 사용하기 위해 Pod에서 사용한다.
