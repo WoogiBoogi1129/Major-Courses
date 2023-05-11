@@ -1,4 +1,4 @@
-1. Volume
+# Volume
 - 기초용어
     - Drive : Storage Device
     - Volume : 논리적으로 구분된 Storage
