@@ -15,8 +15,7 @@ spec:
     requests:
       storage: 2Gi
 ```
-
-
+   
 - pvc.yaml 배포
 ```
 $ kubectl apply -f pvc.yaml
