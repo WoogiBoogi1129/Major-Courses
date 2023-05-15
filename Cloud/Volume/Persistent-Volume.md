@@ -17,3 +17,29 @@
     - 시간이 매우 많이 소요되고 복잡할 것이다.
     - 그래서 Storage Class가 등장했다.
         - Storage Class를 이용한다면 그때 그때 Stroage 스펙을 생성한다.
+# 실습
+- PV.yaml 작성
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test-pv
+spec: 
+  capacity: 
+    storage: 2Gi
+  accessModes: 
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain // Pod를 지워도 Storage를 유지할 지 안할지 결정
+  storageClassName: local-storage
+  local:
+    path: /home/student40
+  nodeAffinity: 
+    required: 
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - worker-5
+```
+- 
