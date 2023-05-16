@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod40
+spec:
+  containers:
+  - name: container40
+    image: kubetm/init
+    volumeMounts:
+    - name: student40-pvc
+      mountPath: /home/student40
+  volumes:
+  - name: student40-pvc
+    persistentVolumeClaim:
+      claimName: student40-pvc
