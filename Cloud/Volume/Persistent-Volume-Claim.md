@@ -1,5 +1,8 @@
 # Persistent Volume Claim
-# 실습
+## 이론
+- PersistentVolumeClaim
+  - 사용자 입장에서 PV를 사용하기 위한 Volume의 종류 중 하나이다.
+## 실습
 - pvc.yaml 파일 생성
 ```
 apiVersion: v1
