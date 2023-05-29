@@ -1,4 +1,4 @@
-# 230522 클라우드융합 수업 준비
+# Role & Role Binding
 - Role & Role Binding
     - Role : 하나의 Namespace 별 또는 클러스터 전체에 대해 권한을 정해주는 수단
         - Pod별로 권한을 부여하는 것이라 생각하면 된다.

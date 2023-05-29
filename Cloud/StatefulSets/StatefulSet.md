@@ -1,6 +1,8 @@
 # StatefulSets
-- Deployment로 Pod를 여러개 생성했을 때 Pod의 Name 뒤에 고유번호가 새로 생성될 때마다 매번 달라짐
-- Volume과 Pod를 연결시켜두어도 Pod를 다시 생성하면 Volume과 연결될 지 안될지는 미지수이다.
+# StatefulSets
+- Deployment로 Pod를 여러개 생성했을 때 Pod의 Name 뒤에 고유번호는 새로 생성될 때마다 매번 바뀜
+- Volume과 Pod를 연결해놔도 Pod가 다시 실행될 때 Volume과 연결될 지는 보장되지 않음
+- 기존 Pod 서비스들은 Stateless 기법이 적합하다. 하지만 과거 내역들이 유지되어야한다면 새로운 Deployment 기법(StatefulSets)이 필요하다.
     + 이런 스타일은 Stateless 기법에 적합하다. 하지만 과거 내역들을 유지해야한다면?
         + 새로운 Deployment 기법이 필요하다. 얘가 바로 StatefulSets임.
 - 이전에 쓰던 Volume을 계속 이어 쓰겠다.
