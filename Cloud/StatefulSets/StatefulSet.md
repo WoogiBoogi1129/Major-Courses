@@ -1,18 +1,12 @@
 # StatefulSets
-# StatefulSets
 - Deployment로 Pod를 여러개 생성했을 때 Pod의 Name 뒤에 고유번호는 새로 생성될 때마다 매번 바뀜
 - Volume과 Pod를 연결해놔도 Pod가 다시 실행될 때 Volume과 연결될 지는 보장되지 않음
 - 기존 Pod 서비스들은 Stateless 기법이 적합하다. 하지만 과거 내역들이 유지되어야한다면 새로운 Deployment 기법(StatefulSets)이 필요하다.
-    + 이런 스타일은 Stateless 기법에 적합하다. 하지만 과거 내역들을 유지해야한다면?
-        + 새로운 Deployment 기법이 필요하다. 얘가 바로 StatefulSets임.
-- 이전에 쓰던 Volume을 계속 이어 쓰겠다.
+    - 이전에 쓰던 Volume을 계속 이어 쓰겠다. 라는 의미를 가지고 있다.
 - Deployment와 StatefulSet 비교
-    + StatefulSet으로 Pod를 배포하면 Pod에 번호를 붙일 수 있다.
+    + StatefulSet으로 Pod를 배포하면 Pod에 번호를 붙일 수 있다. Deployment로 배포한 Pod는 번호를 원하는대로 붙일 수 없다.
     + 새롭게 생성된 Pod도 이전에 있던 번호를 일치시켜서 PV를 계속 사용할 수 있다.
-- StatefulSet은 고유번호를 보장시키는 방식으로 Stateful 형식의 Application을 유지할 수 있다.
-- 배포하는 Pod의 Spec은 같다.
-- Pod의 스펙이 모두 같다.
-- 고유번호를 주고 안주고의 차이를 가지고 있다.
+    + 고유 번호를 보장하기 때문에 Stateful 형식의 APP을 유지할 수 있다.
 - Storage를 특정 Workload에 유지시켜주고 싶을 때 사용한다.
 - yaml 파일에서 kind: StatefulSet 으로 바꾸는 것 이외에는 형식이 Deployment와 같다.
 - Scale Up/Down도 가능하다.
@@ -20,7 +14,7 @@
         + 하지만 Storage는 남아있다. 이말을 즉, Scale Up을 다시하면 남아있는 Storage를 다시 사용할 수 있다.
 - Service 측면에서의 StatefulSet
     + Service를 배포할 때 clusterIP를 None으로 설정한다.
-    + 이름으로 찾아간다 DNS서버와 같이 (Headless Service라고한다.) ?? 그렇다면 어딘가에 Name과 매칭되어있는 IP주소는 존재하는가?
+    + 이름으로 찾아간다 DNS서버와 같이 (Headless Service라고한다.)
 - Stateful Service일 경우 Pod에게 각자 고유의 이름이 부여된다.
     + 전체 Service로 묶은 이름과 개별 이름도 부여된다.
 - Stateful Service는 Haedless Service로 배포한다. 각각의 Pod별로 DNS entry로 생성되어 Name을 통해 접근한다.
