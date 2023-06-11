@@ -4,7 +4,7 @@
 - nfs Disk : Network File System 방식의 Storage
 - 외부 사업 Storage를 사용할 수도 있다.
 - 어떤 Storage를 사용할 지는 Storage 관리자가 정한다.
-- Persistent Volume은 Namespace가 아니기 때문에 서로 다른 Namespace도 같은 Persistent Volume을 가진다. (주의해야한다.)
+- Persistent Volume은 Namespace로 구분되지 않으므로 서로 다른 Namespace에서도 같은 Persistent Volume을 가진다.
     - Persistent Volume Claim은 Namespace 범주에 속해 있으므로 따로 설정 가능하다.
 - 중요한 데이터를 유지하고 싶다면 Remote Storage를 사용해야한다. (Storage의 요구사항 참조)
 - Pod는 Persistent Volume을 사용하기 위해 Persistent Volume Claim을 사용한다.   
@@ -51,6 +51,8 @@ spec:
 ```
 $ kubectl apply -f PV.yaml
 ```
-
-- Pod 확인으로 PV가 정상적으로 생성된 것이 확인 가능하다.
+- PV 생성 확인
+```
+$ kubectl get pv
+```
 ![image](https://github.com/WoogiBoogi1129/Major-Courses/assets/110087545/aa1ba81d-9236-44bc-80be-3c2be159dd3f)

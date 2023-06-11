@@ -2,6 +2,7 @@
 # 이론
 - 하드웨어적인 디렉토리를 사용한다.
 - Pod가 사라져도 리소스가 삭제되지 않는다.
+- Pod가 재생성됐을 때, 이전 Pod가 생성되었던 Worker Node에 생성되지 않으면 hostPath를 재사용할 수 없다. 
 - Pod가 사라졌다가 다시 생성될 때 Worker Node가 같아야 hostPath를 재사용할 수 있다.
 - Persistent Volume과는 다르다.
 # 실습
@@ -9,6 +10,28 @@
 ```
 $ vi hostPath.yaml // 생성된 파일 내에 yaml 파일 입력
 ```
+- hostPath.yaml
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: worker-1
+  containers: 
+  - name: container
+    image: kubetm/init
+    volumeMounts:
+    - name: test-volume
+      mountPath: /test1
+  volumes:
+  - name: test-volume
+    hostPath: 
+      path: /home/student40
+      type: DirectoryOrCreate
+```
+
 - nodeSelector 확인하기
     + nodeSelector가 중요한 이유 : yaml 파일 내에 nodeSelector는 아래 명령어를 통해 사용가능한 label의 이름을 알아야함. (실습 그대로만 따라하면 안될 수도 있음)
 ```
