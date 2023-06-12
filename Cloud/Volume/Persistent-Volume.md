@@ -33,7 +33,7 @@ spec:
     storage: 2Gi
   accessModes: 
   - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain 
+  persistentVolumeReclaimPolicy: Retain
   storageClassName: student40-sc
   local:
     path: /home/student40
@@ -55,4 +55,3 @@ $ kubectl apply -f PV.yaml
 ```
 $ kubectl get pv
 ```
-![image](https://github.com/WoogiBoogi1129/Major-Courses/assets/110087545/aa1ba81d-9236-44bc-80be-3c2be159dd3f)

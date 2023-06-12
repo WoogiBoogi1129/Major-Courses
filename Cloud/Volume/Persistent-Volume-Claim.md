@@ -7,7 +7,7 @@
 ```
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadata:
+metadata: 
   name: student40-pvc
 spec:
   storageClassName: student40-sc
@@ -18,26 +18,37 @@ spec:
     requests:
       storage: 2Gi
 ```
-   
 - pvc.yaml 배포
 ```
 $ kubectl apply -f pvc.yaml
 ```
-
 - pvc가 배포되었는지 확인
 ```
 $ kubectl get pvc
 ```
-![image](https://github.com/WoogiBoogi1129/Major-Courses/assets/110087545/a2139f54-38e4-4df9-bb17-97dfa4d01b42)
-
-
+- pvc를 호출할 Pod.yaml 생성
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod40
+spec:
+  containers:
+  - name: container40
+    image: kubetm/init
+    volumeMounts:
+    - name: student40-pvc
+      mountPath: /home/student40
+  volumes:
+  - name: student40-pvc
+    persistentVolumeClaim:
+      claimName: student40-pvc
+```
 - pvc의 이름을 포함한 Pod 정보를 yaml 파일로 배포 (test.yaml 참고)
 ```
 $ kubectl apply -f test.yaml
 $ kubectl get po
 ```
-
-
 - pvc를 이용하여 생성한 pod에 접근하여 testfile 생성해보기
 ```
 $ kubectl exec -it test-pod40 -- bash
@@ -46,8 +57,6 @@ $ touch wow.txt
 $ touch wowwow.txt
 $ exit
 ```
-
-
 - pod를 삭제 후 다시 배포
 ```
 $ kubectl delete po test-pod40
@@ -56,6 +65,4 @@ $ kubectl exec -it test-pod40 -- bash
 $ cd /home/student40
 $ ls
 ```
-
-
 - 이전 Pod에서 생성했던 파일이 살아있는 것을 확인할 수 있다.
