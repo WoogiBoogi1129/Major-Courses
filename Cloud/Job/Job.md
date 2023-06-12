@@ -16,3 +16,47 @@
     - 문제가 발생했을 때, 재동작을 몇번 동작해볼지도 설정할 수 있다.
     - Job이 끝나도 남아있는 오브젝트들을 언제까지 유지할 지 설정할 수 있다 : ttl을 사용하여 설정한다.
     - 독립적으로 Pod들이 병렬처리를 하지만 Job으로 묶인 Pod들은 모두 같은 작업들을 하는 것이다.
+## 실습
+- job.yaml 만들기
+```
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-1
+spec:
+  template:
+    spec:
+      containers:
+      - name: container1
+        image: busybox
+        command: ["echo", "hellworld"]
+      restartPolicy: Never
+  backoffLimit: 4
+```
+- job.yaml 배포하기
+```
+$ kubectl apply -f job.yaml
+```
+- 실행 후 Job 로그 확인하기
+```
+$ kubectl logs -l job-name=kob-1
+```
+### Completion, parallelism 선언한 Job
+- job-cp.yaml 생성
+```
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-2
+spec:
+  completions: 5
+  parallelism: 2
+  template:
+    spec:
+      containers:
+      - name: container1
+        image: perl
+        command: ["perl", "-Mbiguum=bpi", "-wle", "print bpi(100)"]
+      restartPolicy: Never
+  backoffLimit: 4
+```

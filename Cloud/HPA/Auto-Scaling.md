@@ -52,3 +52,7 @@ spec:
     maxReplicas: 10
     targetCPUUtilizationPercentage: 50
 ```
+- CLI로 autoscaling하는 방법
+```
+$ kubectl autoscale deployment hpa-test --cpu-percent=50 --min=1 --max=10
+```
